@@ -22,7 +22,20 @@ export default function Menu() {
     // Normally would send a POST request with item ID to API
     // Only ID will be saved in the basket. The original menu will be the only source of truth
     // for prices and names, because they might change
-    setBasketItems([...basketItems, {"id": itemID, "quantity": 1}]) 
+    
+    // Determines whether item is already in basket, usually back-end logic
+    if(basketItems.find((item) => item.id === itemID) === undefined) {
+      // If not found
+      setBasketItems([...basketItems, {"id": itemID, "quantity": 1}]) 
+      return
+    }
+    // If already exists
+    setBasketItems([...basketItems.map((item) => {
+      if(item.id === itemID) {
+        return {...item, quantity: item.quantity + 1}
+      }
+      return item
+    })])
   }
   return (
     <div className={styles.component_wrapper}>
