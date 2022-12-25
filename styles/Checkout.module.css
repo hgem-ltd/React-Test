@@ -44,8 +44,10 @@
     max-width: 40%;
 }
 .item_price {
-    color: orange;
+    color: black;
     font-size: 1em;
+    margin: auto 0;
+    font-family: Roboto;
     margin-left: auto;
     font-weight: 600;
 }
@@ -60,25 +62,31 @@
 }
 .qty_wrapper {
     margin: auto 0.5em;
-    background-color: var(--grey-bg);
-    padding: 0 0.5em;
+    background-color: orange;
+    padding: 0.1em 0.5em;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.5em;
     border-radius: 20px;
     width: 5rem;
+    font-weight: 500;
+    color: white;
+    font-family: Roboto;
 }
 .qty_btn {
     border: none;
     background: none;
+    color: white;
+    font-weight: 600;
     cursor: pointer;
 }
 .qty_btn:last-of-type {
-    padding-top: 5px;
+    padding-top: 4px;
 }
 .total {
     margin: 0 auto;
     font-size: 2em;
     font-weight: 600;
+    color: black;
 }
