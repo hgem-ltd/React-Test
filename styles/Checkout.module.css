@@ -1,0 +1,7 @@
+.component_wrapper {
+    background-color: var(--grey-bg);
+    font-family: Poppins;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}

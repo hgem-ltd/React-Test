@@ -3,11 +3,21 @@
     font-family: Poppins;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+}
+.menu_basket_wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 .menu_title {
     margin: 1rem auto;
     font-size: 2rem;
     font-weight: 600;
+    grid-column: 2/3;
+}
+.basket_link {
+    margin: auto;
+    font-size: 1.5rem;
 }
 .menu_wrapper {
     padding: 5%;
@@ -23,6 +33,7 @@
     border-radius: 10px;
     min-height: 8rem;
     min-width: 9rem;
+    max-width: 35vw;
     width: fit-content;
     align-items: center;
     flex-direction: column;
@@ -32,6 +43,7 @@
 .item_name {
     font-size: 1em;
     font-weight: 600;
+    text-align: center;
 }
 .item_price {
     color: orange;
