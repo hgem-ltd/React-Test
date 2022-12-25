@@ -1,12 +1,26 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Menu.module.css'
+import menuData from '../menu.json' 
+import { useEffect } from 'react'
+import type { MenuItem } from '../types/types';
 
-export default function Home() {
+export default function Menu() {
+  const menu = menuData;
+  useEffect(() => {
+    // Simulates an API data fetch
+
+  }, [])
   return (
-    <>
-      <div>Hello there</div>
-    </>
+    <div className={styles.wrapper}>
+      <span>Menu</span>
+      {menu.map((item : MenuItem, index : number) => {
+        return (
+        <div key={index}>
+          <span>{item.name}</span>
+          <span>£{item.price}</span>
+          <span>{item.vegetarian? 'Veg' : ''}</span>
+        </div>
+        )
+      })}
+    </div>
   )
 }
