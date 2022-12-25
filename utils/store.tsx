@@ -1,7 +1,8 @@
 import create from 'zustand'
 import type { MenuItem } from '../types/types'
 export type BasketItem = {
-    "id": string
+    "id": string,
+    "quantity": number
 }
 export type ItemStore = {
     menuItems: MenuItem[] | [],

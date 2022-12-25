@@ -5,14 +5,25 @@ import { useEffect } from 'react'
 import type { MenuItem } from '../types/types';
 import { useItemStore } from '../utils/store';
 import type { ItemStore } from '../utils/store';
+
 export default function Menu() {
-  const menuItems = useItemStore((state : ItemStore) => state.menuItems)
-  const setMenuItems = useItemStore((state : ItemStore) => state.setMenuItems)
+  const menuItems = useItemStore((state) => state.menuItems)
+  const setMenuItems = useItemStore((state) => state.setMenuItems)
+  const basketItems = useItemStore((state) => state.basketItems)
+  const setBasketItems = useItemStore((state) => state.setBasketItems)
+
   useEffect(() => {
     // Simulates an API data fetch 
     const fetchData = menuData;
     setMenuItems(fetchData)
   }, [])
+
+  const addToBasket = (itemID : string) => {
+    // Normally would send a POST request with item ID to API
+    // Only ID will be saved in the basket. The original menu will be the only source of truth
+    // for prices and names, because they might change
+    setBasketItems([...basketItems, {"id": itemID, "quantity": 1}]) 
+  }
   return (
     <div className={styles.component_wrapper}>
 
@@ -28,7 +39,7 @@ export default function Menu() {
             <span className={styles.item_name}>{item.name}</span>
             {item.vegetarian && <span className={styles.item_veg}>Vegetarian</span>}  
             <span className={styles.item_price}>£{item.price}</span>
-            <button className={styles.item_add}>Add to basket</button>
+            <button onClick={() => addToBasket(item.id)} className={styles.item_add}>Add to basket</button>
           </div>
           )
         })}
