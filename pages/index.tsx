@@ -42,7 +42,12 @@ export default function Menu() {
 
       <div className={styles.menu_basket_wrapper}>
         <span className={styles.menu_title}>Menu</span>
-        <Link href="/checkout" className={styles.basket_link}>Basket</Link>
+        <Link href="/checkout" className={styles.basket_link}>
+          <span>Basket</span>
+          <div className={styles.basket_num_wrapper}>
+            <span className={styles.basket_num}>{basketItems.length}</span>
+          </div>
+        </Link>
       </div>
 
       <div className={styles.menu_wrapper}>

@@ -17,7 +17,25 @@
 }
 .basket_link {
     margin: auto;
+    font-size: 2rem;
+    text-decoration: none;
+    color: black;
+    font-family: inherit;
+    display: flex;
+}
+.basket_num_wrapper {
+    background-color: black;
+    color: white;
+    width: 2rem;
+    border-radius: 50%;
+    margin: auto 0 auto 0.1em;
+    height: 2rem;
+    display: flex;
+}
+.basket_num {
+    margin: auto;
     font-size: 1.5rem;
+    font-weight: 500;
 }
 .menu_wrapper {
     padding: 5%;

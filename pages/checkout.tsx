@@ -5,12 +5,50 @@ import { useItemStore } from '../utils/store';
 
 const Checkout = () => {
     const basketItems = useItemStore((state) => state.basketItems)
+    const setBasketItems = useItemStore((state) => state.setBasketItems)
     const menuItems = useItemStore((state) => state.menuItems)
     useEffect(() => {
         // Would usually call API to get basket item IDs and quantity,
         // which would then be used to find names and prices from menu.
         // For the purposes of this test, I will get them from my state storage
     }, [])
+    const calcTotal = () => {
+        if(basketItems.length === 0) return 0
+        const prices = basketItems.map((item) => {
+            const price = menuItems.find((menuItem) => menuItem.id === item.id)?.price
+            if(price) {
+                return price*item.quantity
+            }      
+            return
+        })
+        const total = prices.reduce((sum, curr) => {
+            if(sum && curr) {
+                return sum + curr
+            }
+        })
+        return total
+    }
+    const increaseQty = (itemID: string) => {
+        setBasketItems([...basketItems.map((item) => {
+            if(item.id === itemID) {
+                return {...item, quantity: item.quantity + 1}
+            }
+            return item
+        })])
+    }
+    const decreaseQty = (itemID: string, qty: number) => {
+        if (qty > 1) {
+            setBasketItems([...basketItems.map((item) => {
+                if(item.id === itemID) {
+                    return {...item, quantity: item.quantity - 1}
+                }
+                return item
+            })])
+        } else {
+            setBasketItems([...basketItems.filter((item) => item.id !== itemID)])
+        }
+        
+    }
 
   return (
     <div className={styles.component_wrapper}>
@@ -21,11 +59,14 @@ const Checkout = () => {
             return (
                 <div key={index}>
                     <span>{item?.name}</span>
-                    <span>{item?.price}</span>
-                    <span>Qty: {quantity}</span>
+                    <span>£{item?.price}</span>
+                    <button onClick={() => decreaseQty(basketItem.id, basketItem.quantity)}>-</button>
+                    <span>{quantity}</span>
+                    <button onClick={() => increaseQty(basketItem.id)}>+</button>
                 </div>
             )
         })}
+        <span>Total: £{calcTotal()}</span>
     </div>
   )
 }
