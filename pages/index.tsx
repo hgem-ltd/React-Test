@@ -40,7 +40,7 @@ export default function Menu() {
   return (
     <div className={styles.component_wrapper}>
 
-      <div className={styles.menu_basket_wrapper}>
+      <nav className={styles.nav_wrapper}>
         <span className={styles.menu_title}>Menu</span>
         <Link href="/checkout" className={styles.basket_link}>
           <span>Basket</span>
@@ -48,14 +48,14 @@ export default function Menu() {
             <span className={styles.basket_num}>{basketItems.length}</span>
           </div>
         </Link>
-      </div>
-
+      </nav>
+      <span className={styles.legend}><span className={styles.legend_veg}>Veg</span> - Vegetarian</span>
       <div className={styles.menu_wrapper}>
         {menuItems.map((item : MenuItem, index : number) => {
           return (
           <div className={styles.item_wrapper} key={index}>
-            <span className={styles.item_name}>{item.name}</span>
-            {item.vegetarian && <span className={styles.item_veg}>Vegetarian</span>}  
+            <span className={styles.item_name} title={item.name}>{item.name}</span>
+            {item.vegetarian && <span title="Vegetarian dish" className={styles.item_veg}>Veg</span>}  
             <span className={styles.item_price}>£{item.price}</span>
             <button onClick={() => addToBasket(item.id)} className={styles.item_add}>Add to basket</button>
           </div>

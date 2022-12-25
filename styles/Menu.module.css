@@ -5,7 +5,20 @@
     flex-direction: column;
     min-height: 100vh;
 }
-.menu_basket_wrapper {
+.legend {
+    font-size: 1rem;
+    margin: 0 auto;
+}
+.legend_veg {
+    background-color: green;
+    color: white;
+    font-size: 0.9em;
+    font-size: 400;
+    font-style: italic;
+    padding: 0.2em 0.4em;
+    border-radius: 20px;
+}
+.nav_wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
@@ -46,11 +59,12 @@
 }
 .item_wrapper {
     display: flex;
-    padding: 3vw;
+    padding: 0.6em 0.8em;
     font-size: 1.5rem;
     border-radius: 10px;
-    min-height: 8rem;
-    min-width: 9rem;
+    min-height: 9rem;
+    min-width: 10rem;
+    flex-basis: 0;
     max-width: 35vw;
     width: fit-content;
     align-items: center;
@@ -61,7 +75,11 @@
 .item_name {
     font-size: 1em;
     font-weight: 600;
+    overflow: hidden;
+    max-width: 100%;
     text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .item_price {
     color: orange;
@@ -73,7 +91,7 @@
     font-size: 0.5em;
     color: white;
     background-color: var(--green-option);
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 1% 5%;
 
 }

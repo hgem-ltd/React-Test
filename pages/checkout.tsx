@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import styles from '../styles/Checkout.module.css'
 import Link from 'next/link';
 import { useItemStore } from '../utils/store';
+import { spawn } from 'child_process';
 
 const Checkout = () => {
     const basketItems = useItemStore((state) => state.basketItems)
@@ -52,21 +53,29 @@ const Checkout = () => {
 
   return (
     <div className={styles.component_wrapper}>
-        <Link href="/">Home</Link>
-        {basketItems.map((basketItem, index : number) => {
-            const quantity = basketItem.quantity
-            const item = menuItems.find((menuItem) => menuItem.id === basketItem.id)
-            return (
-                <div key={index}>
-                    <span>{item?.name}</span>
-                    <span>£{item?.price}</span>
-                    <button onClick={() => decreaseQty(basketItem.id, basketItem.quantity)}>-</button>
-                    <span>{quantity}</span>
-                    <button onClick={() => increaseQty(basketItem.id)}>+</button>
-                </div>
-            )
-        })}
-        <span>Total: £{calcTotal()}</span>
+        <nav className={styles.nav_wrapper}>
+            <Link href="/" className={styles.menu_link}>Back</Link>
+            <span className={styles.checkout_title}>Checkout</span>
+        </nav>
+        <div className={styles.basket_list}>
+            {basketItems.map((basketItem, index : number) => {
+                const quantity = basketItem.quantity
+                const item = menuItems.find((menuItem) => menuItem.id === basketItem.id)
+                return (
+                    <div className={styles.item_wrapper} key={index}>
+                        <span className={styles.item_name}>{item?.name}</span>
+                        {item?.vegetarian && <span title="Vegetarian dish" className={styles.item_veg}>Veg</span>}
+                        <span className={styles.item_price}>£{item?.price}</span>
+                        <div className={styles.qty_wrapper}>
+                            <button className={styles.qty_btn} onClick={() => decreaseQty(basketItem.id, basketItem.quantity)}>-</button>
+                            <span className={styles.qty_num}>{quantity}</span>
+                            <button className={styles.qty_btn} onClick={() => increaseQty(basketItem.id)}>+</button>
+                        </div>
+                    </div>
+                )
+            })}
+        </div>
+        <span className={styles.total}>Total: £{calcTotal()}</span>
     </div>
   )
 }
