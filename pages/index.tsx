@@ -10,17 +10,20 @@ export default function Menu() {
 
   }, [])
   return (
-    <div className={styles.wrapper}>
-      <span>Menu</span>
-      {menu.map((item : MenuItem, index : number) => {
-        return (
-        <div key={index}>
-          <span>{item.name}</span>
-          <span>£{item.price}</span>
-          <span>{item.vegetarian? 'Veg' : ''}</span>
-        </div>
-        )
-      })}
+    <div className={styles.component_wrapper}>
+        <span className={styles.menu_title}>Menu</span>
+      <div className={styles.menu_wrapper}>
+        {menu.map((item : MenuItem, index : number) => {
+          return (
+          <div className={styles.item_wrapper} key={index}>
+            <span className={styles.item_name}>{item.name}</span>
+            {item.vegetarian && <span className={styles.item_veg}>Vegetarian</span>}  
+            <span className={styles.item_price}>£{item.price}</span>
+            <button className={styles.item_add}>Add to basket</button>
+          </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
