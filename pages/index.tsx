@@ -3,7 +3,7 @@ import menuData from '../menu.json'
 import Link from 'next/link';
 import { useEffect } from 'react'
 import type { MenuItem } from '../types/types';
-import { useItemStore } from '../utils/store';
+import { BasketItem, useItemStore } from '../utils/store';
 import type { ItemStore } from '../utils/store';
 
 export default function Menu() {
@@ -17,7 +17,6 @@ export default function Menu() {
     const fetchData = menuData;
     setMenuItems(fetchData)
   }, [])
-
   const addToBasket = (itemID : string) => {
     // Normally would send a POST request with item ID to API
     // Only ID will be saved in the basket. The original menu will be the only source of truth
@@ -37,15 +36,21 @@ export default function Menu() {
       return item
     })])
   }
+  const totalBasketItems = () => {
+    // Array.reduce doesn't work on state array for some reason
+    let total = 0;
+    basketItems.forEach((item) => total += item.quantity)
+    return total
+  } 
   return (
     <div className={styles.component_wrapper}>
 
       <nav className={styles.nav_wrapper}>
         <span className={styles.menu_title}>Menu</span>
-        <Link href="/checkout" className={styles.basket_link}>
+        <Link data-cy="basketLink" href="/checkout" className={styles.basket_link}>
           <span>Basket</span>
           <div className={styles.basket_num_wrapper}>
-            <span className={styles.basket_num}>{basketItems.length}</span>
+            <span className={styles.basket_num} data-cy="cartCounter">{totalBasketItems()}</span>
           </div>
         </Link>
       </nav>
@@ -53,11 +58,11 @@ export default function Menu() {
       <div className={styles.menu_wrapper}>
         {menuItems.map((item : MenuItem, index : number) => {
           return (
-          <div className={styles.item_wrapper} key={index}>
+          <div data-type="menuItem" data-id={item.id} className={styles.item_wrapper} key={index}>
             <span className={styles.item_name} title={item.name}>{item.name}</span>
             {item.vegetarian && <span title="Vegetarian dish" className={styles.item_veg}>Veg</span>}  
             <span className={styles.item_price}>£{item.price}</span>
-            <button onClick={() => addToBasket(item.id)} className={styles.item_add}>Add to basket</button>
+            <button data-cy="addItem" onClick={() => addToBasket(item.id)} className={styles.item_add}>Add to basket</button>
           </div>
           )
         })}

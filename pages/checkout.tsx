@@ -62,14 +62,14 @@ const Checkout = () => {
                 const quantity = basketItem.quantity
                 const item = menuItems.find((menuItem) => menuItem.id === basketItem.id)
                 return (
-                    <div className={styles.item_wrapper} key={index}>
+                    <div data-type="basketItem" data-id={basketItem.id} className={styles.item_wrapper} key={index}>
                         <span className={styles.item_name}>{item?.name}</span>
                         {item?.vegetarian && <span title="Vegetarian dish" className={styles.item_veg}>Veg</span>}
                         <span className={styles.item_price}>£{item?.price}</span>
                         <div className={styles.qty_wrapper}>
-                            <button className={styles.qty_btn} onClick={() => decreaseQty(basketItem.id, basketItem.quantity)}>-</button>
-                            <span className={styles.qty_num}>{quantity}</span>
-                            <button className={styles.qty_btn} onClick={() => increaseQty(basketItem.id)}>+</button>
+                            <button data-cy="decr" className={styles.qty_btn} onClick={() => decreaseQty(basketItem.id, basketItem.quantity)}>-</button>
+                            <span className={styles.qty_num} data-cy="qty">{quantity}</span>
+                            <button data-cy="incr" className={styles.qty_btn} onClick={() => increaseQty(basketItem.id)}>+</button>
                         </div>
                     </div>
                 )
