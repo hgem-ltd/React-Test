@@ -14,8 +14,7 @@ export default function Menu() {
   const basketItems = useItemStore((state) => state.basketItems)
 
   useEffect(() => {
-    // Simulates an API data fetch #
-    console.log(menuItems)
+    // Simulates an API data fetch 
     const fetchData = menuData;
     setMenuItems(fetchData)
   }, [])
@@ -44,7 +43,7 @@ export default function Menu() {
         
         <div className={styles.menu_wrapper}>
           {menuItems?.map((item : MenuItem, index : number) => (
-            <MenuItemComponent item={item} index={index} />
+            <MenuItemComponent item={item} key={index} />
           ))}
         </div>
 

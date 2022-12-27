@@ -3,13 +3,12 @@ import type { MenuItem } from '../types/types'
 import styles from '../styles/Menu.module.css'
 import { useItemStore } from '../utils/store'
 type Props = {
-    item : MenuItem,
-    index : number
+    item : MenuItem
 } 
-const MenuItemComponent = ({item, index} : Props) => {
+const MenuItemComponent = ({item} : Props) => {
   const basketItems = useItemStore((state) => state.basketItems)
   const setBasketItems = useItemStore((state) => state.setBasketItems)
-  
+
   const addToBasket = (itemID : string) => {
     // Normally would send a POST request with item ID to API
     // Only ID will be saved in the basket. The original menu will be the only source of truth
@@ -30,7 +29,7 @@ const MenuItemComponent = ({item, index} : Props) => {
     })])
   }
   return (
-    <div data-type="menuItem" data-id={item.id} className={styles.item_wrapper} key={index}>
+    <div data-type="menuItem" data-id={item.id} className={styles.item_wrapper}>
         <span className={styles.item_name} title={item.name}>{item.name}</span>
         {item.vegetarian && <span title="Vegetarian dish" className={styles.item_veg}>Veg</span>}
         <span className={styles.item_price}>£{item.price}</span>
