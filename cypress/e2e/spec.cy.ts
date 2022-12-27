@@ -1,7 +1,7 @@
 describe ('Adding items to basket and checkout', () => {
   it('Basket counter reflects added items', () => {
       // Go to menu
-      cy.visit('http://localhost:3001')
+      cy.visit('http://localhost:3000')
       cy.get('[data-cy="cartCounter"]').should('have.text', "0")
       cy.get('[data-cy="addItem"]').first().click()
       cy.get('[data-cy="cartCounter"]').should('have.text', "1")
@@ -12,7 +12,7 @@ describe ('Adding items to basket and checkout', () => {
       // Go to basket
   })
   it('Added items can be seen in the basket', () => {
-    cy.visit('http://localhost:3001')
+    cy.visit('http://localhost:3000')
     // Add one item
     cy.get('[data-cy="addItem"]').eq(5).click()
     // Add two identical items
@@ -35,7 +35,7 @@ describe ('Adding items to basket and checkout', () => {
       })
   })
   it('Basket items with 0 quantity are removed', () => {
-    cy.visit('http://localhost:3001')
+    cy.visit('http://localhost:3000')
     cy.get('[data-cy="addItem"]').eq(2).click().click()
     cy.get('[data-cy="basketLink"]').click()
     cy.get('[data-type="basketItem"]').should('exist')
