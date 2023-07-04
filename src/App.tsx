@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import BasketProvider from "./context/BasketProvider";
+import Layout from './components/Layout/Layout';
+import Shop from './components/Shop/Shop';
+import Basket from './components/Basket/Basket';
+import NoMatch from './components/NoMatch/NoMatch';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <BasketProvider>
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<Shop />} />
+                    <Route path="/basket" element={<Basket />} />
+                    <Route path="*" element={<NoMatch />} />
+                </Route>
+            </Routes>
+        </BasketProvider>
+    );
 }
 
 export default App;

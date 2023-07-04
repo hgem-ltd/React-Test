@@ -1,0 +1,33 @@
+@import '../../../../styles/variables';
+
+.button--basket {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: none;
+    border: 0;
+    font-size: 1.25rem;
+    
+
+    svg {
+        height: 35px;
+        width: 35px;
+        margin-right: .5rem;
+    }
+}
+
+.button__count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -2px;
+    left: -12px;
+    background: $colour--orange;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
+}
