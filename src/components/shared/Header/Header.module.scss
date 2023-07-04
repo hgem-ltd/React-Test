@@ -1,0 +1,12 @@
+@import '../../../styles/variables';
+
+.header__text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    a {
+        text-decoration: none;
+        color: $colour--black;
+    }
+}
